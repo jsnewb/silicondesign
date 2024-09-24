@@ -207,7 +207,28 @@ footer{
 }
 
 
+#brands {
+    display: none;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    
+    .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+    }
+}
 
+.brand-box {
+    border: 1px solid var(--color-gray-300);
+    border-radius: 8px;
+    height: 100px;
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 
 @media (min-width: 768px) {
@@ -223,11 +244,18 @@ footer{
         gap: 3rem;
     }
 
-
     footer{
         .credit {
             display: block;
         }
+    }
+
+    #brands {
+        display: block;
+    }
+
+    #brand1, #brand2 {
+        display: none;
     }
 }
 
@@ -251,6 +279,10 @@ footer{
 
     .btn-mobile {
         display: none;
+    }
+
+    #brand1, #brand2 {
+        display: flex;
     }
 }
 
