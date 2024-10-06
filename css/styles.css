@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
 
 :root {
-    --color-primary: #6366F1 ;
     --color-gray-100: #F3F6FF;
     --color-gray-200: #EFF2FC;
     --color-gray-300: #E2E5F1;
@@ -11,15 +10,21 @@
     --color-gray-700: #565973; 
     --color-gray-800: #33354D;
     --color-gray-900: #0B0F19;
+
+    --color-primary: #6366F1;
     --color-white: #FFFFFF;
     --color-error: #EF4444;
     --color-success: #22C55E;
     --color-warning: #FFBA08;
     --color-info: #4C82F7;
+
+    --color-logo-bg: #F3F6FF;
  
 
     --container-padding: 1rem;
     --transition-time: all 0.2s;
+
+    --section-spacing: 4rem;
 }
 
 * {
@@ -27,7 +32,20 @@
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-body, section, div, header, footer, main, asider, nav, blockquote, p, span {
+.space-y-1 > * + * {
+    margin-top: 1rem;
+}
+.space-y-2 > * + * {
+    margin-top: 2rem;
+}
+.space-y-3 > * + * {
+    margin-top: 3rem;
+}
+.space-y-4 > * + * {
+    margin-top: 4rem;
+}
+
+body, section, div, header, footer, main, aside, nav, blockquote, p, span {
     margin: 0;
     padding: 0;
 }
@@ -46,7 +64,6 @@ body {
     height: 100vh;
 }
 
-/* /Container för mobilläge */
 .container {
     width: 100%;
     padding-left: var(--container-padding);
@@ -85,10 +102,40 @@ a:hover {
     margin-right: 0.5rem;
 }
 
+
+.btn-download-app {
+    background-color: var(--color-gray-900);
+    color: var(--color-white);
+    border-radius: 8px;
+    padding: 12px 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+.btn-download-app:hover {
+    background-color: var(--color-gray-600);
+    color: var(--color-white);
+    text-decoration: none;
+}
+
 .btn-mobile {
     background-color: transparent;
     border: none;
     font-size: 2rem;
+}
+
+.btn-circle {
+    height: 44px;
+    width: 44px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: 1px solid var(--color-gray-300);
+    background-color: var(--color-white);
+    color: var(--color-gray-800);
 }
 
 .btn-toggle-switch {
@@ -155,6 +202,7 @@ a:hover {
     border-radius: 50%;
 }
 
+/*NAVBAR START -- denna kod är lånad från Hans video Tips & Trix - Bygga upp din header med HTML och CSS --> */
 .navbar {
     display: none;
 }
@@ -187,26 +235,144 @@ header .container {
     padding-top: 1rem;
     padding-bottom: 1rem;
 }
+/*NAVBAR END/
 
-footer{
-    font-size: 14px;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    color: var(--color-gray-600);
-    
-    .container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 5px;
+/*HERO START-- denna kod är lånad från Hans video Tips & Trix - Skapa Hero sektionen med hjälp av CSS-grid och Flexbox -->*/
+#hero {
+    background: rgb(99,102,241);
+    background: linear-gradient(0deg, rgba(99,102,241,0.1) 0%, rgba(218,70,239,0.05) 42%, rgba(241,244,253,0.07) 83%);
+    padding-bottom: 2rem;
+
+    overflow: hidden;
+
+    @media (min-width: 768px) {
+        padding-bottom: 0;
     }
-    
-    .credit {
-        display: block;
+
+    .container {
+        display: grid;
+        gap: 2rem;
+        grid-template-columns: 1fr;
+        grid-template-areas: "headline"
+                             "content";
+
+        @media (min-width: 768px) {
+            grid-template-columns: 1fr 1fr;
+            grid-template-areas: "headline headline"  
+                                 "content images";
+        }
+
+        @media (min-width: 1400px) {
+            grid-template-columns: 2fr 3fr;
+            grid-template-areas: "headline images"  
+                                 "content images";
+        }
+    }
+
+    .headline {
+        grid-area: headline;
+        text-align: center;
+
+        h1 {
+          font-size: 34px;
+          font-weight: 800;
+
+          @media (min-width: 768px) {
+            font-size: 56px;
+
+          }
+          @media (min-width: 1400px) {
+            text-align: left;
+          }
+        }
+    }
+
+    .content {
+        grid-area: content;
+        text-align: center;
+
+        @media (min-width: 768px) {
+            text-align: left;
+        }
+
+        p {
+            font-size: 18px;
+            margin-bottom: 3rem;
+        }
+
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+
+            @media (min-width: 1400px) {
+                flex-direction: row;
+            }
+        }
+
+        .discover-more {
+            color: var(--color-gray-900);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+
+            @media (min-width: 768px) {
+                justify-content: flex-start;
+                margin-bottom: 2rem;
+            }
+
+            @media (min-width: 1400px) {
+                margin-top: 10rem;
+            }
+        }
+
+    }
+
+    .images {
+        position: relative;
+        grid-area: images;
+        display: none;
+
+        @media (min-width: 768px) {
+            display: block;
+        }
+
+        .img-back {
+            position: absolute;
+            z-index: -10;
+            bottom: 0;
+            right: 100px;
+            width: 70%;
+            height: auto;
+
+            @media (min-width: 1400px) {
+                width: auto;
+                bottom: -100px;
+                right: 230px;
+            }
+        }
+
+        .img-front {
+            position: absolute;
+            z-index: -5;
+            bottom: 0;
+            right: 0;
+            width: 70%;
+            height: auto;
+
+            @media (min-width: 1400px) {
+                bottom: -100px;
+                width: auto;
+            }
+        }
     }
 }
+/*HERO END/
 
 
+/*BRANDS START-- denna kod är lånad från Hans video Tips & Trix - Skapa brand section med av FlexBox --*/
 #brands {
     display: none;
     padding-top: 2rem;
@@ -229,6 +395,298 @@ footer{
     justify-content: center;
     align-items: center;
 }
+/*BRANDS END*/
+
+
+/*FEATURES START-- denna kod är lånad från Joakims video Utforma sektioner med CSS --*/
+
+.features {
+    text-align: center;
+    padding-block: var(--section-spacing);
+    
+    .h1 {
+        font-size: 40px;
+        font-weight: 800;
+        color: var(--color-gray-900);
+        margin-top: 0;
+    }
+
+    .text-lg {
+        color: var(--color-gray-600);
+        font-size: 1.125rem;
+    }
+    .h5 {
+        font-size: 20px;
+        font-weight: 800;
+        color: var(--color-gray-900);
+        margin-top: 0;
+    }
+    .p {
+        font-size: 16px;
+        color: var(--color-gray-700);
+    }
+    .iphone {
+        display: none;
+    }
+    .features-grid {
+        display: grid;
+        gap: 2rem;
+        margin-top: 4rem;
+    }
+    .feature-card {
+        display: flex;
+        text-align: start;
+        gap: 1rem;
+        align-items: flex-start;
+    }
+    .icon-container {
+        background-color: var(--color-logo-bg);
+        padding: 1rem;
+        border-radius: 0.5rem;
+        flex-shrink: 0;
+    }
+
+    @media (width > 768px) {
+        .features-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem 3 rem;
+        }
+
+    @media (width > 1200px) {
+        text-align: start;
+        .container {
+            display: flex;
+            gap: 4rem;
+        }
+        .iphone {
+            display: block;
+        }
+        .text {
+            flex: 1;
+        }
+      }    
+
+    @media (width > 1400px) {
+        .container {
+            gap: 10rem;
+        }
+    }   
+  }
+}
+/*FEATURES END*/
+
+/*CAROUSEL START-- denna kod är lånad från Joakims video Utforma sektioner med CSS--*/
+.carousel-section {
+    padding-block: var(--section-spacing);
+    background-color: var(--color-gray-100);
+    text-align: center;
+
+    .carousel-box {
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    .text {
+        max-width: 80ch;
+        margin-inline: auto;
+    }
+
+    .h4 {
+        font-size: 24px;
+        color: var(--color-gray-900);
+        font-weight: 800;
+    }
+
+    .h1 {
+        font-size: 40px;
+        color: var(--color-gray-900);
+        font-weight: 800;
+    }
+
+    .p {
+        font-size: 16px;
+        color: var(--color-gray-700);
+    }
+
+    @media (width < 768px) {
+    .carousel-item:first-of-type,
+    .carousel-item:last-of-type {
+    display: none;  
+    }
+    }
+}
+/*CAROUSEL END*/
+
+/*FEATURES MAKE YOUR MONEY START*/
+.features-money {
+    padding-block: var(--section-spacing);
+    text-align: center; 
+}
+/*FEATURES MAKE YOUR MONEY END*/
+
+/*TESTIMONIALS START*/
+.testimonials-section {
+    padding-block: var(--section-spacing);
+    background-color: var(--color-gray-100);
+    text-align: center;
+
+    .container {
+        display: flex;
+
+        .text {
+            margin-top: -60px;
+        }
+        
+        h3 {
+            font-size: 40px;
+            font-weight: 900;
+            text-align: left;
+            color: var(--color-gray-900);
+        }
+
+        .text {
+            padding-left: 70px;
+        }
+        
+    }
+
+
+}
+/*TESTIMONIALS END*/
+
+/*FAQ START*/
+.faq-section {
+    padding-block: var(--section-spacing);
+    text-align: center;
+
+    .container {
+        display: grid;
+        grid-template-columns: auto auto;
+        gap: 3rem;
+        grid-template-columns: 10fr 3fr;
+        grid-template-areas: "contact questions"  
+
+       }
+        h4 {
+            font-size: 32px;
+            font-weight: 900;
+            text-align: left;
+            color: var(--color-gray-900);
+            margin: 0;
+        }
+
+        p {
+            font-size: 18px;
+            color: var(--color-gray-700);
+            text-align: left;
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+
+        .img-container {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+    }
+
+/*FAQ END*/
+
+/*SUBSCRIBE START*/
+.subscribe-section {
+   
+    .icon {
+        position: absolute;
+        top: 50%;
+        left: .5rem;
+        color: #b4b7c9;
+        
+        transform: translateY(-50%);
+    }
+    
+    .email {
+        padding-left: 2rem;
+    
+    }
+    
+    .text-box {
+        text-align: left;  
+    }
+    
+    h4 {
+        font-size: 24px;
+        color: var(--color-gray-900);
+        font-weight: 900;
+    }
+    
+    .img-not {
+    
+    }
+
+
+    padding-block: var(--section-spacing);
+ 
+    .container {
+        background-color: var(--color-gray-100);
+        display: flex;
+        padding: var(--section-spacing);
+        justify-content: space-between;
+        place-items: center;
+        text-align: center;
+    }
+
+    .input-group {
+        display: flex;
+
+        .form-input {
+            border-radius: .5em 0 0 .5em;
+        }
+        .btn {
+            border-radius: 0 .5rem .5rem 0;
+        }
+    }
+
+    .form-input email {
+        border: 1px solid var(--color-gray-400);
+        padding: .3em;
+        font-size: 16px;
+        }
+
+    .btn {
+        background: var(--color-primary);
+        color: var(--color-white);
+        font-size: 16px;
+        padding: .8rem 2em;
+        border: 0;
+        border-radius: 0 .5em .5em 0;
+    }
+
+    .input-group {
+    position: relative;
+    }
+}
+/*SUBSCRIBE END*/
+
+
+/*FOOTER START -- denna kod är lånad från Hans video Tips & Trix- Skapa en footer med hjälp av FlexBox [+wrapper med CSS-Grid] --*/
+footer {
+    font-size: 14px;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    color: var(--color-gray-600);
+    
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+    }
+    
+    .credit {
+        display: none;
+    }
+}
+/*FOOTER END*/
 
 
 @media (min-width: 768px) {
@@ -244,7 +702,7 @@ footer{
         gap: 3rem;
     }
 
-    footer{
+    footer {
         .credit {
             display: block;
         }
@@ -285,4 +743,7 @@ footer{
         display: flex;
     }
 }
+
+
+
 
